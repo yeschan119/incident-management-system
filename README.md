@@ -53,8 +53,7 @@ Each incident is:
 - Interactive dashboards
 - Map-based visualization
 
-### Data Platform
-[Data Architecture](data-engineering.md)
+### [Data Architecture](data-engineering.md)
 ---
 
 ## 🧩 Core Domain Model
