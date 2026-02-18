@@ -1,5 +1,5 @@
 # Incident Management System  
-### 멀티테넌트 기반 실시간 사고 보고 및 고급 분석 플랫폼
+### 멀티테넌트 기반 실시간 사고(사건) 보고 및 고급 분석 플랫폼
 
 [English 🇺🇸](README.md)
 
