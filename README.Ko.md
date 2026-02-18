@@ -114,15 +114,7 @@ Angular Dashboard
 
 ## 3️⃣ 클라이언트 병렬 처리
 
-UI 응답 속도 개선을 위해 독립 API를 병렬 호출:
-
-```tsx
-const [eventObj, checkEventTicketValidation, serviceCodes] = await Promise.all([
-      this.billingService.getEventTicketDetail(this.eventTicketId),
-      this.billingService.checkEventTicketValidation(this.eventTicketId),
-      this.lookupService.getServiceCodesList()
-    ]);
-```
+UI 응답 속도 개선을 위해 독립 API를 병렬 호출: ```await Promise.all```
 
 독립 데이터 병렬 로딩으로 체감 성능 개선.
 
