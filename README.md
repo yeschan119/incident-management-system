@@ -190,9 +190,9 @@ Enabled concurrent fetching of independent datasets, improving perceived respons
 ---
 
 # 📊 View-Based Pre-Aggregation Strategy
-<img width="550" height="300" alt="Screenshot 2026-02-17 at 23 42 28" src="https://github.com/user-attachments/assets/ba9dc49a-9023-4aa5-a272-5f8668d0bd2e" />
-<img width="550" height="300" alt="Screenshot 2026-02-17 at 23 43 11" src="https://github.com/user-attachments/assets/509ff3a9-3933-472b-a7d5-103987da5a82" />
-<img width="550" height="300" alt="Screenshot 2026-02-17 at 23 43 25" src="https://github.com/user-attachments/assets/45f9d29e-7aef-48fa-a0a1-e48a19630373" />
+<img width="600" height="350" alt="Screenshot 2026-02-17 at 23 42 28" src="https://github.com/user-attachments/assets/ba9dc49a-9023-4aa5-a272-5f8668d0bd2e" />
+<img width="600" height="350" alt="Screenshot 2026-02-17 at 23 43 11" src="https://github.com/user-attachments/assets/509ff3a9-3933-472b-a7d5-103987da5a82" />
+<img width="600" height="350" alt="Screenshot 2026-02-17 at 23 43 25" src="https://github.com/user-attachments/assets/45f9d29e-7aef-48fa-a0a1-e48a19630373" />
 
 Analytics is powered by optimized MySQL Views.
 
