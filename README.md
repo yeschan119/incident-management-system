@@ -189,7 +189,7 @@ Enabled concurrent fetching of independent datasets, improving perceived respons
 
 ---
 
-# 📊 View-Based Pre-Aggregation Strategy
+# 📊 View-Based Pre-Aggregation Strategy - part of examples
 <img width="600" height="370" alt="Screenshot 2026-02-17 at 23 42 28" src="https://github.com/user-attachments/assets/ba9dc49a-9023-4aa5-a272-5f8668d0bd2e" />
 <img width="600" height="370" alt="Screenshot 2026-02-17 at 23 43 11" src="https://github.com/user-attachments/assets/9ea040e5-a170-46c8-bacb-ee900ad03c5e" />
 <img width="600" height="370" alt="Screenshot 2026-02-17 at 23 43 25" src="https://github.com/user-attachments/assets/45f9d29e-7aef-48fa-a0a1-e48a19630373" />
