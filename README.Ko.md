@@ -71,7 +71,7 @@ Analytics 계층은 실시간 트래픽 환경에서 고집계(High Aggregation)
 
 ### [Data Architecture](data-engineering.md)
 
-### Diagram
+### Diagram - 축약 버전
 <img width="500" height="500" alt="ims" src="https://github.com/user-attachments/assets/246a0821-a363-40ad-9cbb-2f3114932725" />
 
 ```mermaid
