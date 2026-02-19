@@ -16,7 +16,7 @@ I participated in the overall system architecture design and independently desig
 
 ---
 
-# 📊 System Scale
+# System Scale
 
 The system operates at production scale:
 
