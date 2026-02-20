@@ -5,7 +5,7 @@
 
 ---
 
-## 🚀 Executive Summary
+## Executive Summary
 
 Cloud-based Incident Management System built with:
 
@@ -26,7 +26,7 @@ I participated in overall architecture design and independently owned the **End-
 
 ---
 
-## 📊 Production Scale
+## Production Scale
 
 - 🏫 ~2,000 schools (LAUSD jurisdiction)
 - 👥 Hundreds of thousands of users
@@ -36,7 +36,7 @@ I participated in overall architecture design and independently owned the **End-
 
 ---
 
-# 🔍 Detailed Sections (Click to Expand)
+# Detailed Sections (Click to Expand)
 
 ---
 
@@ -295,7 +295,7 @@ Filtering occurs at query layer, not only UI.
 
 ---
 
-## 🧠 Engineering Highlights
+## Engineering Highlights
 
 - Multi-tenant SaaS architecture
 - Hierarchical IssueType modeling
