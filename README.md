@@ -3,57 +3,72 @@
 
 [한국어 🇰🇷](README.Ko.md)
 
-This project is a cloud-based Incident Management System built using:
+---
+
+## 🚀 Executive Summary
+
+Cloud-based Incident Management System built with:
 
 - AWS RDS (MySQL)
 - ASP.NET Core MVC
 - Angular
 - AWS Infrastructure
 
-The platform enables real-time incident reporting, classification, tracking, and analytics across organizations.
+Supports:
 
-I participated in the overall system architecture design and independently designed and implemented the **End-to-End Analytics Dashboard**.
+- Real-time incident reporting
+- Multi-tenant SaaS architecture
+- Hierarchical issue classification
+- Role-based access control
+- Advanced analytics dashboard
+
+I participated in overall architecture design and independently owned the **End-to-End Analytics Dashboard**.
 
 ---
 
-# System Scale
-
-The system operates at production scale:
+## 📊 Production Scale
 
 - 🏫 ~2,000 schools (LAUSD jurisdiction)
 - 👥 Hundreds of thousands of users
 - 🚨 Hundreds of incidents generated daily
 - 🏢 Multi-tenant SaaS architecture
-
-The analytics layer is designed to handle high aggregation workloads under real-time operational traffic.
+- ⚡ Real-time operational analytics
 
 ---
 
-## System Overview
+# 🔍 Detailed Sections (Click to Expand)
+
+---
+
+<details>
+<summary><strong>🧩 System Overview</strong></summary>
 
 The system is designed to:
 
-- Capture incidents in real time (e.g., COVID, shooting, flu, threat cases)
+- Capture incidents in real time (COVID, shooting, flu, threat cases)
 - Classify incidents using hierarchical Issue Types
 - Enforce role-based access control (RBAC)
-- Notify relevant stakeholders immediately
-- Track incident lifecycle and resolution status
+- Notify stakeholders immediately
+- Track incident lifecycle and resolution
 - Provide multi-dimensional analytics dashboards
 
-Each incident is:
+Incident lifecycle:
 
 1. Reported and classified (IssueType hierarchy)
 2. Managed based on Role and Organization
 3. Tracked through status changes
-4. Included in aggregated analytics views
+4. Aggregated into analytics views
+
+</details>
 
 ---
 
-## Architecture
+<details>
+<summary><strong>🏗 Architecture</strong></summary>
 
 ### Infrastructure
 - AWS RDS (MySQL)
-- Multi-tenant architecture (orgId-based separation)
+- Multi-tenant architecture (orgId-based isolation)
 - Cloud deployment
 
 ### Backend
@@ -68,84 +83,65 @@ Each incident is:
 - Interactive dashboards
 - Map-based visualization
 
-### [Data Architecture](data-engineering.md)
+### Data Architecture
+[Data Architecture Documentation](data-engineering.md)
 
-### Diagram - Short Version
+### Diagram (Short Version)
+
 <img width="500" height="500" alt="ims" src="https://github.com/user-attachments/assets/246a0821-a363-40ad-9cbb-2f3114932725" />
 
 ```mermaid
 flowchart TB
 
-%% ---------------------
-%% CLIENT LAYER
-%% ---------------------
 subgraph Client_Layer
     A[Angular Application]
 end
 
-%% ---------------------
-%% API LAYER
-%% ---------------------
 subgraph API_Layer
     B[ASP.NET Core MVC]
     C[Role Based Filtering]
     D[Analytics Abstraction Layer]
 end
 
-%% ---------------------
-%% OLTP LAYER
-%% ---------------------
 subgraph OLTP_Transactional
-    O[(Organization Table)]
-    E[(Incident Table)]
-    F[(IssueType Table)]
-    G[(User / Role Table)]
-    H[(Site Table)]
+    O[(Organization)]
+    E[(Incident)]
+    F[(IssueType)]
+    G[(User / Role)]
+    H[(Site)]
 end
 
-%% ---------------------
-%% ANALYTICS LAYER
-%% ---------------------
 subgraph Analytics_Read_Optimized
     I[(Partitioned Tables)]
     J[(Composite Indexes)]
     K[(Pre Aggregated Views)]
 end
 
-%% ---------------------
-%% WRITE PATH - INCIDENT CRUD
-%% ---------------------
-A -->|Create Incident| B
-A -->|Update Incident| B
-A -->|Delete Incident| B
-
+A -->|Create / Update| B
 B -->|Transactional Write| E
 E --> O
 E --> F
 E --> G
 E --> H
-
 E --> I
 
-%% ---------------------
-%% READ PATH - DASHBOARD
-%% ---------------------
 A -->|Dashboard Request| B
 B --> C
 C --> D
 D --> K
 K --> J
 J --> I
-I -->|Aggregated Result| D
+I --> D
 D --> B
 B --> A
 ```
 
+</details>
+
 ---
 
-# Production Analytics Dashboard (My Ownership)
-
-I independently designed and implemented the entire analytics layer.
+<details>
+<summary><strong>📈 Production Analytics Dashboard (My Ownership)</strong></summary>
 
 ### Data Flow
 
@@ -159,51 +155,68 @@ Angular Dashboard
 Interactive Graph & Map Visualization
 ```
 
----
+I independently:
 
-# 🛠 Performance Optimization Strategy
+- Designed analytics schema
+- Built DB-level analytic views
+- Implemented REST endpoints
+- Developed Angular dashboard
+- Implemented drill-down & filtering
+- Integrated spatial visualization
+- Maintain and evolve analytics layer
 
-## 1️⃣ Index Strategy
-
-- Composite indexes using multiple frequently filtered columns
-- Descending index on `createdAt` for latest-first UI rendering
-- Query plan stabilization via proper index coverage
-- Reduced full table scans under heavy traffic
-
----
-
-## 2️⃣ Partitioning Strategy
-
-Applied table-specific partitioning:
-
-- LIST partitioning for categorical segmentation
-- RANGE partitioning for time-series data
-- Optimized partition pruning for analytics queries
+</details>
 
 ---
 
-## 3️⃣ Client-Side Parallelization
+<details>
+<summary><strong>⚙ Performance Optimization Strategy</strong></summary>
 
-Reduced UI wait time via parallel API calls: ```Promiss.ALL()```
+### 1️⃣ Index Strategy
 
-Enabled concurrent fetching of independent datasets, improving perceived responsiveness.
+- Composite multi-column indexes
+- Descending index on `createdAt`
+- Query plan stabilization
+- Reduced full table scans
 
 ---
 
-# 📊 View-Based Pre-Aggregation Strategy - part of examples
-<img width="600" height="370" alt="Screenshot 2026-02-17 at 23 42 28" src="https://github.com/user-attachments/assets/ba9dc49a-9023-4aa5-a272-5f8668d0bd2e" />
-<img width="600" height="370" alt="Screenshot 2026-02-17 at 23 43 11" src="https://github.com/user-attachments/assets/9ea040e5-a170-46c8-bacb-ee900ad03c5e" />
-<img width="600" height="370" alt="Screenshot 2026-02-17 at 23 43 25" src="https://github.com/user-attachments/assets/45f9d29e-7aef-48fa-a0a1-e48a19630373" />
+### 2️⃣ Partitioning Strategy
 
-Analytics is powered by optimized MySQL Views.
+- LIST partitioning (categorical)
+- RANGE partitioning (time-series)
+- Partition pruning optimization
 
-## Why View Pre-Aggregation?
+---
 
-- Reusability across multiple dashboards
-- Heavy aggregation workloads stabilized at DB level
-- Reduced repeated computation at API layer
-- Optimizer-level tuning inside views (index strategy & execution plan stabilization)
-- Avoidance of lazy-loading performance pitfalls
+### 3️⃣ Client-Side Parallelization
+
+Used `Promise.all()` to parallelize API calls.
+
+Result:
+- Reduced dashboard wait time
+- Improved perceived performance
+
+</details>
+
+---
+
+<details>
+<summary><strong>📊 View-Based Pre-Aggregation Strategy</strong></summary>
+
+<img width="600" height="370" alt="view1" src="https://github.com/user-attachments/assets/ba9dc49a-9023-4aa5-a272-5f8668d0bd2e" />
+<img width="600" height="370" alt="view2" src="https://github.com/user-attachments/assets/9ea040e5-a170-46c8-bacb-ee900ad03c5e" />
+<img width="600" height="370" alt="view3" src="https://github.com/user-attachments/assets/45f9d29e-7aef-48fa-a0a1-e48a19630373" />
+
+Analytics powered by optimized MySQL Views.
+
+### Why View Pre-Aggregation?
+
+- Reusable across dashboards
+- Stabilized heavy aggregation at DB level
+- Reduced repeated API computation
+- Optimizer-level tuning
+- Avoided lazy-loading pitfalls
 
 Design principles:
 
@@ -212,31 +225,26 @@ Design principles:
 - orgId partition isolation
 - Execution plan predictability
 
----
-
-# Analytics Capabilities
-
-### Case Per Issue Type
-Time-based + category-based aggregation with trend comparison.
-
-### Case Per Location
-Site-level distribution and comparative analysis.
-
-### Reporter-Based Analysis
-Behavioral pattern visibility with role-aware filtering.
-
-### Risk / Threat Segmentation
-Severity distribution and escalation trend monitoring.
-
-### Time-Series Trend Analysis
-Monthly / quarterly aggregation and lifecycle metrics.
-
-### Spatial Intelligence
-Map-based clustering and top affected site ranking.
+</details>
 
 ---
 
-# Role-Based Analytics Enforcement
+<details>
+<summary><strong>📊 Analytics Capabilities</strong></summary>
+
+- Case per Issue Type
+- Case per Location
+- Reporter-based behavioral analysis
+- Risk / Threat segmentation
+- Time-series trend analysis
+- Spatial clustering & site ranking
+
+</details>
+
+---
+
+<details>
+<summary><strong>🔐 Role-Based Analytics Enforcement</strong></summary>
 
 Analytics layer enforces:
 
@@ -245,39 +253,49 @@ Analytics layer enforces:
 - Sensitive data filtering
 - Reporter visibility constraints
 
-Filtering occurs at query layer, not just UI.
+Filtering occurs at query layer, not only UI.
+
+</details>
 
 ---
 
-# My Contribution
+<details>
+<summary><strong>👨‍💻 My Contribution</strong></summary>
 
 ### System-Level Participation
-- Contributed to domain modeling
-- Participated in Incident / IssueType schema design
-- Collaborated on RBAC structure
+
+- Domain modeling
+- Incident / IssueType schema design
+- RBAC collaboration
 
 ### Sole Ownership (Analytics Layer)
-- Designed analytics data architecture from scratch
-- Built DB-level analytic views
-- Implemented REST analytics endpoints
-- Developed Angular analytics dashboard
-- Implemented filtering and drill-down logic
-- Integrated map-based spatial visualization
-- Maintain and evolve the analytics layer
+
+- Designed analytics architecture
+- Built optimized DB views
+- Implemented REST endpoints
+- Developed Angular dashboard
+- Implemented drill-down logic
+- Integrated spatial visualization
+- Continuous performance tuning
+
+</details>
 
 ---
 
-# Measurable Impact
+<details>
+<summary><strong>📈 Measurable Impact</strong></summary>
 
-- Analytics layer designed from scratch
+- Built analytics layer from scratch
 - Reduced dashboard latency by **20%**
 - Improved aggregation performance by **10%**
-- Stabilized heavy aggregation workloads at production scale
-- Enabled real-time insight visibility across thousands of schools
+- Stabilized heavy workloads in production
+- Enabled real-time insights across thousands of schools
+
+</details>
 
 ---
 
-# 📈 Engineering Highlights
+## 🧠 Engineering Highlights
 
 - Multi-tenant SaaS architecture
 - Hierarchical IssueType modeling
@@ -289,7 +307,7 @@ Filtering occurs at query layer, not just UI.
 
 ---
 
-# Project Impact
+## 🏁 Project Impact
 
 The system enables organizations to:
 
